@@ -1,4 +1,4 @@
-package jni;
+package myojni.jni;
 
 public enum VibrationType {
 	SHORT, 

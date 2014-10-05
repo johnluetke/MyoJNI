@@ -22,4 +22,12 @@ void setHandle(JNIEnv *env, jobject obj, T *t)
     env->SetLongField(obj, getHandleField(env, obj), handle);
 }
 
+template <typename T>
+void clearHandle(JNIEnv *env, jobject obj)
+{
+    jlong handle = env->GetLongField(obj, getHandleField(env, obj));
+    T * t = reinterpret_cast<T *>(handle);
+    delete t;
+}
+
 #endif

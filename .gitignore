@@ -1,4 +1,6 @@
 .idea/
-bin/
+src/main/resources/myo-sdk/macosx
+src/main/resources/myo-sdk/windows
+target/
 
 *.swp
