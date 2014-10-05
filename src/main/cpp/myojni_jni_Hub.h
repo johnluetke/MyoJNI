@@ -25,6 +25,22 @@ JNIEXPORT jobject JNICALL Java_myojni_jni_Hub_waitForMyo
 
 /*
  * Class:     myojni_jni_Hub
+ * Method:    run
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_run
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     myojni_jni_Hub
+ * Method:    runOnce
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_runOnce
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     myojni_jni_Hub
  * Method:    dispose
  * Signature: ()V
  */

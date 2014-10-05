@@ -17,7 +17,7 @@ CXXFLAGS := $(INCLUDES)
 
 .SILENT:
 
-build: clean init generate-jni-headers $(LIBRARY)
+build: clean init javac generate-jni-headers $(LIBRARY)
 
 $(LIBRARY): $(OBJFILES)
 	echo "   Building native library..."
@@ -36,6 +36,9 @@ clean:
 generate-jni-headers:
 	echo "   Generating JNI .h files..."
 	javah -jni -classpath $(CLSDIR) -d $(CPPDIR) $(subst /,.,$(subst .class,,$(subst $(CLSDIR),,$(JNIFILES))))
+
+javac:
+	mvn compile
 
 $(OBJDIR)%.o: $(CPPDIR)%.cpp
 	echo "   Compiling .cpp..."

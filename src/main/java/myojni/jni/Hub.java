@@ -22,6 +22,10 @@ public class Hub implements Disposable {
 	
 	public native Myo waitForMyo(long milliseconds);
 
+    public native void run(long duration_ms);
+
+    public native void runOnce(long duration_ms);
+
     @Override
     public native void dispose();
 }
