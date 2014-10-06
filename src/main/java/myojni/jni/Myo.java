@@ -6,6 +6,9 @@ public class Myo implements Disposable {
 
     protected long nativeHandle;
 
+    private Myo() {
+    }
+
     protected Myo(long handle) {
         nativeHandle = handle;
     }

@@ -1,33 +1,49 @@
 #include "myojni.h"
 #include "myojni_jni_Hub.h"
 
-void Java_myojni_jni_Hub_initialize(JNIEnv *env, jobject obj, jstring applicationIdentifier) {
-	std::string appId(env->GetStringUTFChars(applicationIdentifier, 0), env->GetStringUTFLength(applicationIdentifier));
-	myo::Hub hub(appId);
-    myo::Hub * pHub = & hub;
-	setJNIHandle(env, obj, pHub);
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_initialize(JNIEnv *env, jobject obj, jstring applicationIdentifier) {
+    try {
+	    const char * appId = env->GetStringUTFChars(applicationIdentifier, 0);
+	    myo::Hub * hub = new myo::Hub(appId);
+	    setJNIHandle(env, obj, hub);
+	}
+	catch (const std::exception & e) {
+    	jclass exceptionClass = env->FindClass("java/lang/RuntimeException");
+    	env->ThrowNew(exceptionClass, e.what());
+    }
 }
 
-jobject Java_myojni_jni_Hub_waitForMyo(JNIEnv *env, jobject obj, jlong milliseconds) {
-    std::cout << ">>> " << "Java_jni_Hub_waitForMyo" << std::endl;
-    std::cout << "milliseconds: " << (unsigned int)milliseconds << std::endl;
-    myo::Hub * hubPtr = getJNIHandle<myo::Hub>(env, obj);
-    //myo::Myo * myoPtr = hubPtr->waitForMyo((unsigned int)milliseconds); // TODO: SIGSEGV
-    return NULL;
+JNIEXPORT jobject JNICALL Java_myojni_jni_Hub_waitForMyo(JNIEnv *env, jobject obj, jlong milliseconds) {
+    myo::Hub * hub = getJNIHandle<myo::Hub>(env, obj);
+    myo::Myo * myo = hub->waitForMyo(milliseconds);
+    // According to SDK docs, timeout produces a null return
+    if (myo == NULL) {
+        return NULL;
+    }
+    else {
+        jclass jMyoClass = env->FindClass("myojni/jni/Myo");
+        jmethodID jMyoConst = env->GetMethodID(jMyoClass, "<init>", "()V") ;
+
+        jobject jMyoObj = env->NewGlobalRef(env->NewObject(jMyoClass, jMyoConst));
+        setJNIHandle(env, jMyoObj, myo);
+        return jMyoObj;
+    }
 }
 
-void Java_myojni_jni_Hub_run(JNIEnv *env, jobject obj, jlong duration_ms) {
-    std::cout << ">>> " << "Java_myojni_jni_Hub_run" << std::endl;
-    std::cout << "duration_ms: " << (unsigned int)duration_ms << std::endl;
-    myo::Hub * pHub = getJNIHandle<myo::Hub>(env, obj);
-    //pHub->run((unsigned int)duration_ms); // TODO: SIGSEGV
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_run(JNIEnv *env, jobject obj, jlong duration_ms) {
+    myo::Hub * hub = getJNIHandle<myo::Hub>(env, obj);
+    if (hub == NULL) {
+        env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "No native Hub object found");
+    }
+    hub->run(duration_ms);
 }
 
-void Java_myojni_jni_Hub_runOnce(JNIEnv *env, jobject obj, jlong duration_ms) {
-    std::cout << ">>> " << "Java_myojni_jni_Hub_runOnce" << std::endl;
-    std::cout << "duration_ms: " << (unsigned int)duration_ms << std::endl;
-    myo::Hub * pHub = getJNIHandle<myo::Hub>(env, obj);
-    //pHub->runOnce((unsigned int)duration_ms); // TODO: SIGSEGV
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_runOnce(JNIEnv *env, jobject obj, jlong duration_ms) {
+    myo::Hub * hub = getJNIHandle<myo::Hub>(env, obj);
+    if (hub == NULL) {
+        env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "No native Hub object found");
+    }
+    hub->runOnce(duration_ms);
 }
 
 void Java_myojni_jni_Hub_dispose(JNIEnv *env, jobject obj) {
