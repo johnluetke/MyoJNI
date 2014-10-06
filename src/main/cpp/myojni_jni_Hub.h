@@ -25,6 +25,22 @@ JNIEXPORT jobject JNICALL Java_myojni_jni_Hub_waitForMyo
 
 /*
  * Class:     myojni_jni_Hub
+ * Method:    addListener
+ * Signature: (Lmyojni/jni/DeviceListener;)V
+ */
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_addListener
+  (JNIEnv *, jobject, jobject);
+
+/*
+ * Class:     myojni_jni_Hub
+ * Method:    removeListener
+ * Signature: (Lmyojni/jni/DeviceListener;)V
+ */
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_removeListener
+  (JNIEnv *, jobject, jobject);
+
+/*
+ * Class:     myojni_jni_Hub
  * Method:    run
  * Signature: (J)V
  */

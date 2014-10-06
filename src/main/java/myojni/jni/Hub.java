@@ -19,8 +19,12 @@ public class Hub implements Disposable {
     }
 
 	private native void initialize(String applicationIdentifier);
-	
-	public native Myo waitForMyo(long milliseconds);
+
+    public native Myo waitForMyo(long milliseconds);
+
+    public native void addListener(DeviceListener listener);
+
+    public native void removeListener(DeviceListener listener);
 
     public native void run(long duration_ms);
 

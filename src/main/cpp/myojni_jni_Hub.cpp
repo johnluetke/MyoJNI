@@ -8,8 +8,7 @@ JNIEXPORT void JNICALL Java_myojni_jni_Hub_initialize(JNIEnv *env, jobject obj, 
 	    setJNIHandle(env, obj, hub);
 	}
 	catch (const std::exception & e) {
-    	jclass exceptionClass = env->FindClass("java/lang/RuntimeException");
-    	env->ThrowNew(exceptionClass, e.what());
+    	env->ThrowNew(env->FindClass("java/lang/RuntimeException"), e.what());
     }
 }
 
@@ -28,6 +27,17 @@ JNIEXPORT jobject JNICALL Java_myojni_jni_Hub_waitForMyo(JNIEnv *env, jobject ob
         setJNIHandle(env, jMyoObj, myo);
         return jMyoObj;
     }
+}
+
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_addListener(JNIEnv *env, jobject obj, jobject jDeviceListener) {
+    // Need to map to C++ impl
+    // Need to somehow identify and save the listener instance so that it can be "removed"
+    // - Cant create new map to C++ cause it would be a diff object, need to save the instance itself.
+    env->ThrowNew(env->FindClass("java/lang/UnsupportedOperationException"), "Not implemented");
+}
+
+JNIEXPORT void JNICALL Java_myojni_jni_Hub_removeListener(JNIEnv *env, jobject obj, jobject jDevceListener) {
+    env->ThrowNew(env->FindClass("java/lang/UnsupportedOperationException"), "Not implemented");
 }
 
 JNIEXPORT void JNICALL Java_myojni_jni_Hub_run(JNIEnv *env, jobject obj, jlong duration_ms) {
