@@ -23,6 +23,14 @@ JNIEXPORT void JNICALL Java_myojni_jni_Myo_vibrate
 JNIEXPORT void JNICALL Java_myojni_jni_Myo_requestRssi
   (JNIEnv *, jobject);
 
+/*
+ * Class:     myojni_jni_Myo
+ * Method:    dispose
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_myojni_jni_Myo_dispose
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

@@ -1,10 +1,10 @@
 LIBRARY := libmyojni.so
-BASEDIR := .
-CPPDIR  := $(BASEDIR)/src/main/cpp/
-CLSDIR  := $(BASEDIR)/target/classes/
-OBJDIR  := $(BASEDIR)/target/obj/
-OUTDIR  := $(BASEDIR)/target/lib/
-MYOSDK  := $(BASEDIR)/src/main/resources/myo-sdk/macosx/
+BASEDIR := ./
+CPPDIR  := $(BASEDIR)src/main/cpp/
+CLSDIR  := $(BASEDIR)target/classes/
+OBJDIR  := $(BASEDIR)target/obj/
+OUTDIR  := $(BASEDIR)target/lib/
+MYOSDK  := $(BASEDIR)src/main/resources/myo-sdk/macosx/
 
 CPPFILES := $(wildcard $(CPPDIR)*.cpp)
 OBJFILES := $(addprefix $(OBJDIR), $(notdir $(CPPFILES:.cpp=.o)))
@@ -30,8 +30,7 @@ init:
 
 clean:
 	echo "   Cleaning previous artifacts..."
-	rm -rf $(OBJDIR)/*
-	rm -rf $(OUTDIR)/*
+	rm -rf $(BASEDIR)target/*
 
 generate-jni-headers:
 	echo "   Generating JNI .h files..."
@@ -41,5 +40,5 @@ javac:
 	mvn compile
 
 $(OBJDIR)%.o: $(CPPDIR)%.cpp
-	echo "   Compiling .cpp..."
+	echo "   Compiling $@..."
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
