@@ -7,7 +7,6 @@
 
 #include <myo/cxx/Hub.hpp>
 #include <myo/cxx/Myo.hpp>
-#include <myo/cxx/Vector3.hpp>
 
 inline jfieldID getJNIHandleField(JNIEnv *env, jobject obj)
 {
