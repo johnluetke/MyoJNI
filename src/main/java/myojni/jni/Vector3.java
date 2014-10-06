@@ -1,55 +1,68 @@
 package myojni.jni;
 
-import myojni.Disposable;
+public class Vector3 {
 
-import java.lang.reflect.ParameterizedType;
-
-public class Vector3 implements Disposable {
-
-    protected long nativeHandle;
+    private final double x;
+    private final double y;
+    private final double z;
 
     public Vector3() {
-        initialize();
+        this(0, 0, 0);
+    }
+
+    public Vector3(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public Vector3(float x, float y, float z) {
-        initializeXYZ(x, y, z);
+        this((double)x, (double)y, (double)z);
     }
 
     public Vector3(Vector3 other) {
-        this(other.X(), other.Y(), other.Z());
+        this(other.getX(), other.getY(), other.getZ());
     }
 
-    protected Vector3(long handle) {
-        nativeHandle = handle;
+    public double getX() {
+        return x;
     }
 
-    private native void initialize();
+    public double getY() {
+        return y;
+    }
 
-    private native void initializeXYZ(float x, float y, float z);
+    public double getZ() {
+        return z;
+    }
 
-    public native float X();
+    public double magnitude() {
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+    }
 
-    public native float Y();
+    public Vector3 normalized() {
+        double magnitude = this.magnitude();
+        return new Vector3(x / magnitude, y / magnitude, z / magnitude);
+    }
 
-    public native float Z();
+    public double dot(Vector3 rhs) {
+        return x * rhs.getX() + y * rhs.getY() + z * rhs.getZ();
+    }
 
-    public native float magnitude();
+    public Vector3 cross(Vector3 rhs) {
+        return new Vector3(x * rhs.getZ() - z * rhs.getY(),
+                           z * rhs.getX() - x * rhs.getZ(),
+                           x * rhs.getY() - y * rhs.getX());
 
-    public native Vector3 normalized();
+    }
 
-    public native float dot(Vector3 rhs);
-
-    public native Vector3 cross(Vector3 rhs);
-
-    public native float angleTo(Vector3 rhs);
-
-    @Override
-    public native void dispose();
+    public double angleTo(Vector3 rhs) {
+        return Math.acos(dot(rhs) / (magnitude() * rhs.magnitude()));
+    }
 
     @Override
     public String toString() {
-        return "[" + this.X() + ", " + this.Y() + ", " + this.Z() + "]";
+        return "[" + this.getX() + ", " + this.getY() + ", " + this.getZ() + "]";
     }
 
 }

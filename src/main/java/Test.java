@@ -12,7 +12,7 @@ public class Test {
 
         Vector3 v3 = new Vector3();
         v3 = new Vector3(1f,2f,3f);
-        //System.out.println(v3.X());
+        //System.out.println(v3.getX());
         System.out.println(v3);
 	}
 	

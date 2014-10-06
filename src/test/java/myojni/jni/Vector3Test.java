@@ -18,8 +18,8 @@ public class Vector3Test {
     @Test
     public void testX() {
         Vector3 vector = new Vector3(0.1f, 0f, 0f);
-        Assert.assertThat(vector.X(), CoreMatchers.is(0.1f));
-        //Assert.assertEquals(0.1f, vector.X(), 0);
+        Assert.assertThat(vector.getX(), CoreMatchers.is(0.1f));
+        //Assert.assertEquals(0.1f, vector.getX(), 0);
     }
 
     @After
