@@ -13,8 +13,12 @@ public class Myo implements Disposable {
         nativeHandle = handle;
     }
 
-	public native void vibrate(VibrationType vibration);
-	
+	private native void vibrate(int vibration);
+
+    public void vibrate(VibrationType vibration) {
+        vibrate(vibration.ordinal());
+    }
+
 	public native void requestRssi();
 
     public native void dispose();

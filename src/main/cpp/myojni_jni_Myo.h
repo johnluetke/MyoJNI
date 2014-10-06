@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     myojni_jni_Myo
  * Method:    vibrate
- * Signature: (Lmyojni/jni/VibrationType;)V
+ * Signature: (I)V
  */
 JNIEXPORT void JNICALL Java_myojni_jni_Myo_vibrate
-  (JNIEnv *, jobject, jobject);
+  (JNIEnv *, jobject, jint);
 
 /*
  * Class:     myojni_jni_Myo
