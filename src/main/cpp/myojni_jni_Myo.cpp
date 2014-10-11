@@ -1,8 +1,8 @@
-#include "myojni.h"
+#include "myojni/myojni.h"
 #include "myojni_jni_Myo.h"
 
 JNIEXPORT void JNICALL Java_myojni_jni_Myo_vibrate(JNIEnv *env, jobject obj, jint vibration) {
-	myo::Myo * myo = getJNIHandle<myo::Myo>(env, obj);
+	myo::Myo * myo = MyoJNI::getJNIHandle<myo::Myo>(env, obj);
 	try {
 		if (vibration == 0) {
 			myo->vibrate(myo::Myo::vibrationShort);
@@ -20,7 +20,7 @@ JNIEXPORT void JNICALL Java_myojni_jni_Myo_vibrate(JNIEnv *env, jobject obj, jin
 }
 
 JNIEXPORT void JNICALL Java_myojni_jni_Myo_requestRssi(JNIEnv *env, jobject obj) {
-	myo::Myo * myo = getJNIHandle<myo::Myo>(env, obj);
+	myo::Myo * myo = MyoJNI::getJNIHandle<myo::Myo>(env, obj);
 	try {
 		myo->requestRssi();
 	}
