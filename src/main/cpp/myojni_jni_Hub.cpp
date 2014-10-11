@@ -34,7 +34,24 @@ JNIEXPORT void JNICALL Java_myojni_jni_Hub_addListener(JNIEnv *env, jobject obj,
     // Need to map to C++ impl
     // Need to somehow identify and save the listener instance so that it can be "removed"
     // - Cant create new map to C++ cause it would be a diff object, need to save the instance itself.
-    env->ThrowNew(env->FindClass("java/lang/UnsupportedOperationException"), "Not implemented");
+    // env->ThrowNew(env->FindClass("java/lang/UnsupportedOperationException"), "Not implemented");
+    myo::Hub * hub = MyoJNI::getJNIHandle<myo::Hub>(env, obj);
+    if (hub == NULL) {
+        env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "Native Hub object is null");
+    }
+    else {
+        // Java hash codes are unique per instance
+        jmethodID hashCodeMethod = env->GetMethodID(env->GetObjectClass(jDeviceListener), "hashCode", "()I");
+        jint jDeviceListenerHashCode = env->CallIntMethod(jDeviceListener, hashCodeMethod);
+
+        if (MyoJNI::deviceListenerHashMap.count(jDeviceListenerHashCode) == 0) {
+            // Map this Java DeviceListener to a MyoJNI one
+            jobject newJObject = env->NewGlobalRef(jDeviceListener);
+            MyoJNI::DeviceListener * deviceListener = new MyoJNI::DeviceListener(env, newJObject);
+            MyoJNI::deviceListenerHashMap[jDeviceListenerHashCode] = deviceListener;
+            hub->addListener(deviceListener);
+        }
+    }
 }
 
 JNIEXPORT void JNICALL Java_myojni_jni_Hub_removeListener(JNIEnv *env, jobject obj, jobject jDevceListener) {
