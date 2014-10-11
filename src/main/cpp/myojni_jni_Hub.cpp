@@ -1,4 +1,4 @@
-#include "myojni/myojni.h"
+#include "myojni.h"
 #include "myojni_jni_Hub.h"
 
 JNIEXPORT void JNICALL Java_myojni_jni_Hub_initialize(JNIEnv *env, jobject obj, jstring applicationIdentifier) {
@@ -24,6 +24,7 @@ JNIEXPORT jobject JNICALL Java_myojni_jni_Hub_waitForMyo(JNIEnv *env, jobject ob
         jmethodID jMyoConst = env->GetMethodID(jMyoClass, "<init>", "()V") ;
 
         jobject jMyoObj = env->NewGlobalRef(env->NewObject(jMyoClass, jMyoConst));
+        MyoJNI::myoHashMap[myo] = jMyoObj; // Saves this instance for future use
         MyoJNI::setJNIHandle(env, jMyoObj, myo);
         return jMyoObj;
     }

@@ -1,4 +1,4 @@
-#include "myojni/myojni.h"
+#include "myojni.h"
 #include "myojni_jni_Myo.h"
 
 JNIEXPORT void JNICALL Java_myojni_jni_Myo_vibrate(JNIEnv *env, jobject obj, jint vibration) {

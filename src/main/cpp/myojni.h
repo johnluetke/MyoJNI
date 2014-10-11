@@ -3,13 +3,15 @@
 
 #include <iostream>
 #include <jni.h>
+#include <map>
 #include <string>
-
 
 #include <myo/cxx/Hub.hpp>
 #include <myo/cxx/Myo.hpp>
 
 namespace MyoJNI {
+
+    extern std::map<myo::Myo *, jobject> myoHashMap;
 
     static inline jfieldID getJNIHandleField(JNIEnv *env, jobject obj)
     {
@@ -39,6 +41,8 @@ namespace MyoJNI {
         T * t = reinterpret_cast<T *>(handle);
         delete t;
     }
+
+    static void dispose();
 
 }
 
