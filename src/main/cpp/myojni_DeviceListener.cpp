@@ -16,21 +16,24 @@ namespace MyoJNI {
     }
 
     void DeviceListener::onUnpair(myo::Myo * myo, uint64_t timestamp) {
+        DEVICE_LISTENER_INVOKE_VOID("onUnpair", "(Lmyojni/jni/Myo;J)V", myo, timestamp);
     }
 
     void DeviceListener::onConnect(myo::Myo * myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion) {
     }
 
     void DeviceListener::onDisconnect(myo::Myo * myo, uint64_t timestamp) {
+        DEVICE_LISTENER_INVOKE_VOID("onDisconnect", "(Lmyojni/jni/Myo;J)V", myo, timestamp);
     }
 
     void DeviceListener::onArmRecognized(myo::Myo * myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection) {
     }
 
     void DeviceListener::onArmLost(myo::Myo * myo, uint64_t timestamp) {
+        DEVICE_LISTENER_INVOKE_VOID("onArmLost", "(Lmyojni/jni/Myo;J)V", myo, timestamp);
     }
 
-    void DeviceListener::onPose(myo::Myo * myo, uint64_t timestamp,myo::Pose pose) {
+    void DeviceListener::onPose(myo::Myo * myo, uint64_t timestamp, myo::Pose pose) {
     }
 
     void DeviceListener::onOrientationData(myo::Myo * myo, uint64_t timestamp, const myo::Quaternion<float> & rotation) {
@@ -43,8 +46,6 @@ namespace MyoJNI {
     }
 
     void DeviceListener::onRssi(myo::Myo * myo, uint64_t timestamp, int8_t rssi) {
-       	jobject jMyo = fetchJavaMyo(myo);
-        jmethodID onRssiMethod = this->env->GetMethodID(this->env->GetObjectClass(this->jDeviceListener), "onRssi", "(Lmyojni/jni/Myo;JI)V");
-       	env->CallVoidMethod(this->jDeviceListener, onRssiMethod, jMyo, timestamp, rssi);
+        DEVICE_LISTENER_INVOKE_VOID("onRssi", "(Lmyojni/jni/Myo;JI)V", myo, timestamp, rssi);
     }
 }

@@ -6,6 +6,11 @@
 #ifndef __MYOJNI_DEVICELISTENER_INCLUDED__
 #define __MYOJNI_DEVICELISTENER_INCLUDED__
 
+#define DEVICE_LISTENER_INVOKE_VOID(methodName, javaMethodSignature, myo, javaMethodArgs...) \
+            jobject jMyo = fetchJavaMyo(myo); \
+            jmethodID method = this->env->GetMethodID(this->env->GetObjectClass(this->jDeviceListener), methodName, javaMethodSignature); \
+            this->env->CallVoidMethod(this->jDeviceListener, method, jMyo, javaMethodArgs);
+
 namespace MyoJNI {
 
     class DeviceListener : public myo::DeviceListener {
@@ -31,7 +36,7 @@ namespace MyoJNI {
 
         void onArmLost(myo::Myo * myo, uint64_t timestamp);
 
-        void onPose(myo::Myo * myo, uint64_t timestamp,myo::Pose pose);
+        void onPose(myo::Myo * myo, uint64_t timestamp, myo::Pose pose);
 
         void onOrientationData(myo::Myo * myo, uint64_t timestamp, const myo::Quaternion<float> & rotation);
 

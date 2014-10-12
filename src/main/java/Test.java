@@ -19,7 +19,7 @@ public class Test {
 
             @Override
             public void onUnpair(Myo myo, long timestamp) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println("Myo was unpaired!");
             }
 
             @Override
@@ -29,7 +29,7 @@ public class Test {
 
             @Override
             public void onDisconnect(Myo myo, long timestamp) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println("Myo was disconnected!");
             }
 
             @Override
@@ -39,7 +39,7 @@ public class Test {
 
             @Override
             public void onArmLost(Myo myo, long timestamp) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println("Arm was lost");
             }
 
             @Override
@@ -70,7 +70,7 @@ public class Test {
 
         while (true) {
             hub.run(1000);
-            myo.requestRssi();
+            //myo.requestRssi();
         }
 	}
 	
