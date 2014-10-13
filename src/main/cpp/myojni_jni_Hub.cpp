@@ -31,10 +31,6 @@ JNIEXPORT jobject JNICALL Java_myojni_jni_Hub_waitForMyo(JNIEnv *env, jobject ob
 }
 
 JNIEXPORT void JNICALL Java_myojni_jni_Hub_addListener(JNIEnv *env, jobject obj, jobject jDeviceListener) {
-    // Need to map to C++ impl
-    // Need to somehow identify and save the listener instance so that it can be "removed"
-    // - Cant create new map to C++ cause it would be a diff object, need to save the instance itself.
-    // env->ThrowNew(env->FindClass("java/lang/UnsupportedOperationException"), "Not implemented");
     myo::Hub * hub = MyoJNI::getJNIHandle<myo::Hub>(env, obj);
     if (hub == NULL) {
         env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "Native Hub object is null");

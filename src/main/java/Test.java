@@ -34,7 +34,7 @@ public class Test {
 
             @Override
             public void onArmRecognized(Myo myo, long timestamp, Arm arm, XDirection xDirection) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println(arm + " arm was detected, XDirection is " + xDirection);
             }
 
             @Override

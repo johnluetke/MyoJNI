@@ -27,6 +27,9 @@ namespace MyoJNI {
     }
 
     void DeviceListener::onArmRecognized(myo::Myo * myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection) {
+        jobject javaArm = MyoJNI::getJavaArm(this->env, arm);
+        jobject javaXDirection = MyoJNI::getJavaXDirection(this->env, xDirection);
+        DEVICE_LISTENER_INVOKE_VOID("onArmRecognized", "(Lmyojni/jni/Myo;JLmyojni/jni/Arm;Lmyojni/jni/XDirection;)V", myo, timestamp, javaArm, javaXDirection);
     }
 
     void DeviceListener::onArmLost(myo::Myo * myo, uint64_t timestamp) {
