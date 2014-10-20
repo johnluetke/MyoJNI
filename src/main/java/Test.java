@@ -49,12 +49,12 @@ public class Test {
 
             @Override
             public void onAccelerometerData(Myo myo, long timestamp, Vector3 accel) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println("Accel data received. " + accel);
             }
 
             @Override
             public void onGyroscopeData(Myo myo, long timestamp, Vector3 gyro) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println("Gyro data received. " + gyro);
             }
 
             @Override

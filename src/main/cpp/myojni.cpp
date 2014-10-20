@@ -40,6 +40,18 @@ namespace MyoJNI {
         return javaFirmwareVersion;
     }
 
+    jobject getJavaVector3(JNIEnv * env, myo::Vector3<float> vector3) {
+    	jclass vector3Class = env->FindClass("myojni/jni/Vector3");
+        jmethodID vector3Constructor = env->GetMethodID(vector3Class, "<init>", "(DDD)V");
+        jobject javaVector3 = env->NewObject(vector3Class,
+                                             vector3Constructor,
+                                             vector3.x(),
+                                             vector3.y(),
+                                             vector3.z());
+
+    	return javaVector3;
+    }
+
     jobject getJavaXDirection(JNIEnv * env, myo::XDirection xDirection) {
     	std::string xDirectionString;
     	switch(xDirection) {

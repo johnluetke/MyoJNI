@@ -47,9 +47,13 @@ namespace MyoJNI {
     }
 
     void DeviceListener::onAccelerometerData(myo::Myo * myo, uint64_t timestamp, const myo::Vector3<float> & accel) {
+        jobject javaVector3 = MyoJNI::getJavaVector3(this->env, accel);
+        DEVICE_LISTENER_INVOKE_VOID("onAccelerometerData", "(Lmyojni/jni/Myo;JLmyojni/jni/Vector3;)V", myo, timestamp, javaVector3);
     }
 
     void DeviceListener::onGyroscopeData(myo::Myo * myo, uint64_t timestamp, const myo::Vector3<float> & gyro) {
+        jobject javaVector3 = MyoJNI::getJavaVector3(this->env, gyro);
+        DEVICE_LISTENER_INVOKE_VOID("onGyroscopeData", "(Lmyojni/jni/Myo;JLmyojni/jni/Vector3;)V", myo, timestamp, javaVector3);
     }
 
     void DeviceListener::onRssi(myo::Myo * myo, uint64_t timestamp, int8_t rssi) {

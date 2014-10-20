@@ -62,7 +62,7 @@ public class Vector3 {
 
     @Override
     public String toString() {
-        return "[" + this.getX() + ", " + this.getY() + ", " + this.getZ() + "]";
+        return "Vector3 [" + this.getX() + ", " + this.getY() + ", " + this.getZ() + "]";
     }
 
 }
