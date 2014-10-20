@@ -40,6 +40,43 @@ namespace MyoJNI {
         return javaFirmwareVersion;
     }
 
+    jobject getJavaPose(JNIEnv * env, myo::Pose pose) {
+        std::string poseString;
+        switch(pose.type()) {
+            case myo::Pose::rest:
+                poseString = "Rest";
+                break;
+            case myo::Pose::fist:
+                poseString = "Fist";
+                break;
+            case myo::Pose::waveIn:
+                poseString = "WaveIn";
+                break;
+            case myo::Pose::waveOut:
+                poseString = "WaveOut";
+                break;
+            case myo::Pose::fingersSpread:
+                poseString = "FingersSpread";
+                break;
+            case myo::Pose::reserved1:
+                poseString = "Reserved1";
+                break;
+            case myo::Pose::thumbToPinky:
+                poseString = "ThumbToPinky";
+                break;
+            case myo::Pose::unknown:
+            default:
+                poseString = "Unknown";
+                break;
+        };
+
+        jclass poseClass = env->FindClass("myojni/jni/Pose");
+        jfieldID poseFieldID = env->GetStaticFieldID(poseClass, poseString.c_str(), "Lmyojni/jni/Pose;");
+        jobject javaPoseObject = env->GetStaticObjectField(poseClass, poseFieldID);
+
+        return javaPoseObject;
+    }
+
     jobject getJavaVector3(JNIEnv * env, myo::Vector3<float> vector3) {
     	jclass vector3Class = env->FindClass("myojni/jni/Vector3");
         jmethodID vector3Constructor = env->GetMethodID(vector3Class, "<init>", "(DDD)V");

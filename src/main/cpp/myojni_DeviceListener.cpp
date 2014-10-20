@@ -41,6 +41,8 @@ namespace MyoJNI {
     }
 
     void DeviceListener::onPose(myo::Myo * myo, uint64_t timestamp, myo::Pose pose) {
+        jobject javaPose = MyoJNI::getJavaPose(this->env, pose);
+        DEVICE_LISTENER_INVOKE_VOID("onPose", "(Lmyojni/jni/Myo;JLmyojni/jni/Pose;)V", myo, timestamp, javaPose);
     }
 
     void DeviceListener::onOrientationData(myo::Myo * myo, uint64_t timestamp, const myo::Quaternion<float> & rotation) {

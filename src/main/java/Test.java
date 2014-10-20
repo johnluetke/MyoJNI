@@ -44,7 +44,7 @@ public class Test {
 
             @Override
             public void onPose(Myo myo, long timestamp, Pose pose) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println("Pose: " + pose);
             }
 
             @Override

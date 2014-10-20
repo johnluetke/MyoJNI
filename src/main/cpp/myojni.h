@@ -49,6 +49,8 @@ namespace MyoJNI {
 
     jobject getJavaFirmwareVersion(JNIEnv * env, myo::FirmwareVersion firmwareVersion);
 
+    jobject getJavaPose(JNIEnv * env, myo::Pose pose);
+
     jobject getJavaVector3(JNIEnv * env, myo::Vector3<float> vector3);
 
     jobject getJavaXDirection(JNIEnv * env, myo::XDirection xDirection);
