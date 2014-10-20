@@ -2,24 +2,38 @@ package myojni.jni;
 
 public class FirmwareVersion {
 
-    protected long firmareVersionMajor;
-    protected long firmareVersionMinor;
-    protected long firmareVersionPatch;
-    protected long firmareVersionHardwareRev;
+    protected int firmareVersionMajor;
+    protected int firmareVersionMinor;
+    protected int firmareVersionPatch;
+    protected int firmareVersionHardwareRev;
 
-    public long getFirmareVersionMajor() {
+    public FirmwareVersion(int firmareVersionMajor, int firmareVersionMinor, int firmareVersionPatch, int firmareVersionHardwareRev) {
+        this.firmareVersionMajor = firmareVersionMajor;
+        this.firmareVersionMinor = firmareVersionMinor;
+        this.firmareVersionPatch = firmareVersionPatch;
+        this.firmareVersionHardwareRev = firmareVersionHardwareRev;
+    }
+
+    public int getFirmareVersionMajor() {
         return firmareVersionMajor;
     }
 
-    public long getFirmareVersionMinor() {
+    public int getFirmareVersionMinor() {
         return firmareVersionMinor;
     }
 
-    public long getFirmareVersionPatch() {
+    public int getFirmareVersionPatch() {
         return firmareVersionPatch;
     }
 
-    public long getFirmareVersionHardwareRev() {
+    public int getFirmareVersionHardwareRev() {
         return firmareVersionHardwareRev;
+    }
+
+    public String toString() {
+        return "[FirmwareVersion: " + getFirmareVersionMajor() + "." +
+                                      getFirmareVersionMinor() + "." +
+                                      getFirmareVersionPatch() + "." +
+                                      getFirmareVersionHardwareRev() + "]";
     }
 }

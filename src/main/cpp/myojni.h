@@ -45,6 +45,12 @@ namespace MyoJNI {
         delete t;
     }
 
+    jobject getJavaArm(JNIEnv * env, myo::Arm arm);
+
+    jobject getJavaFirmwareVersion(JNIEnv * env, myo::FirmwareVersion firmwareVersion);
+
+    jobject getJavaXDirection(JNIEnv * env, myo::XDirection xDirection);
+
     static void dispose();
 
 }

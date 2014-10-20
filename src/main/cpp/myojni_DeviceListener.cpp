@@ -13,6 +13,8 @@ namespace MyoJNI {
     }
 
     void DeviceListener::onPair(myo::Myo * myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion) {
+        jobject javaFirmwareVersion = MyoJNI::getJavaFirmwareVersion(this->env, firmwareVersion);
+        DEVICE_LISTENER_INVOKE_VOID("onPair", "(Lmyojni/jni/Myo;JLmyojni/jni/FirmwareVersion;)V", myo, timestamp, javaFirmwareVersion);
     }
 
     void DeviceListener::onUnpair(myo::Myo * myo, uint64_t timestamp) {
@@ -20,6 +22,8 @@ namespace MyoJNI {
     }
 
     void DeviceListener::onConnect(myo::Myo * myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion) {
+        jobject javaFirmwareVersion = MyoJNI::getJavaFirmwareVersion(this->env, firmwareVersion);
+        DEVICE_LISTENER_INVOKE_VOID("onConnect", "(Lmyojni/jni/Myo;JLmyojni/jni/FirmwareVersion;)V", myo, timestamp, javaFirmwareVersion);
     }
 
     void DeviceListener::onDisconnect(myo::Myo * myo, uint64_t timestamp) {

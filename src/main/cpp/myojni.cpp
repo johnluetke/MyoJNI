@@ -27,6 +27,19 @@ namespace MyoJNI {
     	return javaArmObject;
     }
 
+    jobject getJavaFirmwareVersion(JNIEnv * env, myo::FirmwareVersion firmwareVersion) {
+        jclass firmwareVersionClass = env->FindClass("myojni/jni/FirmwareVersion");
+        jmethodID firmwareVersionConstructor = env->GetMethodID(firmwareVersionClass, "<init>", "(IIII)V");
+        jobject javaFirmwareVersion = env->NewObject(firmwareVersionClass,
+                                                     firmwareVersionConstructor,
+                                                     firmwareVersion.firmwareVersionMajor,
+                                                     firmwareVersion.firmwareVersionMinor,
+                                                     firmwareVersion.firmwareVersionPatch,
+                                                     firmwareVersion.firmwareVersionHardwareRev);
+
+        return javaFirmwareVersion;
+    }
+
     jobject getJavaXDirection(JNIEnv * env, myo::XDirection xDirection) {
     	std::string xDirectionString;
     	switch(xDirection) {

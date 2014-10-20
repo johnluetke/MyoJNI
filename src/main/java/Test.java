@@ -14,7 +14,7 @@ public class Test {
         hub.addListener(new DeviceListener() {
             @Override
             public void onPair(Myo myo, long timestamp, FirmwareVersion firmwareVersion) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println("Myo was paired! " + firmwareVersion);
             }
 
             @Override
@@ -24,7 +24,7 @@ public class Test {
 
             @Override
             public void onConnect(Myo myo, long timestamp, FirmwareVersion firmwareVersion) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                System.out.println("Myo connected! " + firmwareVersion);
             }
 
             @Override
