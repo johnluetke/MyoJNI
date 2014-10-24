@@ -6,6 +6,10 @@ public class Vector3 {
     private final double y;
     private final double z;
 
+    public static final Vector3 X_AXIS = new Vector3(1, 0, 0);
+    public static final Vector3 Y_AXIS = new Vector3(0, 1, 0);
+    public static final Vector3 Z_AXIS = new Vector3(0, 0, 1);
+
     public Vector3() {
         this(0, 0, 0);
     }
@@ -58,6 +62,14 @@ public class Vector3 {
 
     public double angleTo(Vector3 rhs) {
         return Math.acos(dot(rhs) / (magnitude() * rhs.magnitude()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof Vector3 &&
+                getX() == ((Vector3)other).getX() &&
+                getY() == ((Vector3)other).getY() &&
+                getZ() == ((Vector3)other).getZ();
     }
 
     @Override
