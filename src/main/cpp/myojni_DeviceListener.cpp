@@ -46,6 +46,8 @@ namespace MyoJNI {
     }
 
     void DeviceListener::onOrientationData(myo::Myo * myo, uint64_t timestamp, const myo::Quaternion<float> & rotation) {
+        jobject javaQuaternion = MyoJNI::getJavaQuaternion(this->env, rotation);
+        DEVICE_LISTENER_INVOKE_VOID("onOrientationData", "(Lmyojni/jni/Myo;JLmyojni/jni/Quaternion;)V", myo, timestamp, javaQuaternion);
     }
 
     void DeviceListener::onAccelerometerData(myo::Myo * myo, uint64_t timestamp, const myo::Vector3<float> & accel) {

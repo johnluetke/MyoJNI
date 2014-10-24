@@ -16,7 +16,7 @@ public interface DeviceListener {
 
     public void onPose(Myo myo, long timestamp, Pose pose);
 
-    //public void onOrientationData(Myo myo, long timestamp, Quaternion rotation);
+    public void onOrientationData(Myo myo, long timestamp, Quaternion rotation);
 
     public void onAccelerometerData(Myo myo, long timestamp, Vector3 accel);
 

@@ -51,6 +51,8 @@ namespace MyoJNI {
 
     jobject getJavaPose(JNIEnv * env, myo::Pose pose);
 
+    jobject getJavaQuaternion(JNIEnv * env, myo::Quaternion<float> quaternion);
+
     jobject getJavaVector3(JNIEnv * env, myo::Vector3<float> vector3);
 
     jobject getJavaXDirection(JNIEnv * env, myo::XDirection xDirection);

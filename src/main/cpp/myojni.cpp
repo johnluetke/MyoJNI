@@ -77,6 +77,19 @@ namespace MyoJNI {
         return javaPoseObject;
     }
 
+    jobject getJavaQuaternion(JNIEnv * env, myo::Quaternion<float> quaternion) {
+        jclass quaternionClass = env->FindClass("myojni/jni/Quaternion");
+        jmethodID quaternionConstructor = env->GetMethodID(quaternionClass, "<init>", "(DDDD)V");
+        jobject javaQuaternion = env->NewObject(quaternionClass,
+                                                quaternionConstructor,
+                                                quaternion.x(),
+                                                quaternion.y(),
+                                                quaternion.z(),
+                                                quaternion.w());
+
+        return javaQuaternion;
+    }
+
     jobject getJavaVector3(JNIEnv * env, myo::Vector3<float> vector3) {
     	jclass vector3Class = env->FindClass("myojni/jni/Vector3");
         jmethodID vector3Constructor = env->GetMethodID(vector3Class, "<init>", "(DDD)V");
