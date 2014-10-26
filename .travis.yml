@@ -17,5 +17,6 @@ install:
   - cd /home/travis/myo-sdk/
   - wget -O myo-sdk.zip $MYOSDKDOWNLOAD
   - unzip myo-sdk.zip
+  - cd /home/travis/johnluetke/myojni/
 
 script: mvn package
