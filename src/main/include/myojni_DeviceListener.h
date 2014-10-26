@@ -1,10 +1,7 @@
-#include <jni.h>
-#include <myo/myo.hpp>
-#include "myojni.h"
-#include <map>
-
 #ifndef __MYOJNI_DEVICELISTENER_INCLUDED__
 #define __MYOJNI_DEVICELISTENER_INCLUDED__
+
+#include "myojni.h"
 
 #define DEVICE_LISTENER_INVOKE_VOID(methodName, javaMethodSignature, myo, javaMethodArgs...) \
             jobject jMyo = fetchJavaMyo(myo); \

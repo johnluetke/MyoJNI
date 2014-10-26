@@ -2,14 +2,12 @@
 #define _MYOJNI_H_INCLUDED_
 
 #include <iostream>
-#include <jni.h>
 #include <map>
 #include <string>
+#include <jni.h>
+#include <myo/myo.hpp>
 
 #include "myojni_DeviceListener.h"
-
-#include <myo/cxx/Hub.hpp>
-#include <myo/cxx/Myo.hpp>
 
 namespace MyoJNI {
 
