@@ -49,22 +49,55 @@
                         <version>1.3.2</version>
                         <executions>
                             <execution>
+                                <id>make-dylib-link</id>
                                 <phase>compile</phase>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
+                                <configuration>
+                                    <workingDirectory>${project.build.directory}/nar/${project.name}-${project.version}-${nar.aol}-jni/lib/${nar.aol}/jni</workingDirectory>
+                                    <executable>ln</executable>
+                                    <arguments>
+                                        <argument>-s</argument>
+                                        <argument>-f</argument>
+                                        <argument>lib${project.name}-${project.version}.jnilib</argument>
+                                        <argument>lib${project.name}-${project.version}.dylib</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>make-sdk-lib-dir</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${basedir}</workingDirectory>
+                                    <executable>mkdir</executable>
+                                    <arguments>
+                                        <argument>-p</argument>
+                                        <argument>${project.resources.myolibdir}</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>make-sdk-lib-link</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.resources.myolibdir}</workingDirectory>
+                                    <executable>ln</executable>
+                                    <arguments>
+                                        <argument>-s</argument>
+                                        <argument>-f</argument>
+                                        <argument>${env.MYOSDK}/Versions/Current/myo</argument>
+                                        <argument>libmyo.a</argument>
+                                    </arguments>
+                                </configuration>
                             </execution>
                         </executions>
-                        <configuration>
-                            <workingDirectory>${project.build.directory}/nar/${project.name}-${project.version}-${nar.aol}-jni/lib/${nar.aol}/jni</workingDirectory>
-                            <executable>ln</executable>
-                            <arguments>
-                                <argument>-s</argument>
-                                <argument>-f</argument>
-                                <argument>lib${project.name}-${project.version}.jnilib</argument>
-                                <argument>lib${project.name}-${project.version}.dylib</argument>
-                            </arguments>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
