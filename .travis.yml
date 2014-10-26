@@ -10,14 +10,12 @@ os:
   
 env:
   global: 
-    - MYOSDK=/home/travis/myo-sdk/myo.framework MYOSDKDOWNLOAD=https://s3.amazonaws.com/thalmicdownloads/mac/myo-sdk-mac-beta5.zip
+    - MYOSDK=/home/travis/build/myo-sdk/myo.framework MYOSDKDOWNLOAD=https://s3.amazonaws.com/thalmicdownloads/mac/myo-sdk-mac-beta5.zip
     
 install:
   - pwd
-  - mkdir -p /home/travis/myo-sdk/
-  - cd /home/travis/myo-sdk/
   - wget -O myo-sdk.zip $MYOSDKDOWNLOAD
-  - unzip myo-sdk.zip
-  - cd /home/travis/johnluetke/MyoJNI/
+  - unzip myo-sdk.zip -d myo-sdk
+  - cd /home/travis/build/johnluetke/MyoJNI/
 
 script: mvn package
