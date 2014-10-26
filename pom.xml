@@ -26,7 +26,50 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.resources.myosdkdir>${project.build.sourceDirectory}/../resources/myo-sdk/</project.resources.myosdkdir>
+        <project.resources.myolibdir></project.resources.myolibdir>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>osx</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <project.resources.myolibdir>${project.resources.myosdkdir}/osx/</project.resources.myolibdir>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.3.2</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <workingDirectory>${project.build.directory}/nar/${project.name}-${project.version}-${nar.aol}-jni/lib/${nar.aol}/jni</workingDirectory>
+                            <executable>ln</executable>
+                            <arguments>
+                                <argument>-s</argument>
+                                <argument>-f</argument>
+                                <argument>lib${project.name}-${project.version}.jnilib</argument>
+                                <argument>lib${project.name}-${project.version}.dylib</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -67,10 +110,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-            </plugin>
-            <plugin>
                 <groupId>com.github.maven-nar</groupId>
                 <artifactId>nar-maven-plugin</artifactId>
                 <version>3.2.0</version>
@@ -82,50 +121,15 @@
                             <narSystemPackage>myojni.jni</narSystemPackage>
                         </library>
                     </libraries>
-                    <cpp>
-                        <includePaths>
-                            <includePath>
-                                <path>${env.MYOSDK}/include</path>
-                                <includes>
-                                    <include>**/*</include>
-                                </includes>
-                            </includePath>
-                            <includePath>
-                                <path>${project.build.sourceDirectory}/../include</path>
-                                <includes>
-                                    <include>**/*</include>
-                                </includes>
-                            </includePath>
-                        </includePaths>
-                    </cpp>
                     <linker>
                         <libs>
                             <lib>
                                 <name>myo</name>
-                                <directory>${env.MYOSDK}</directory>
+                                <directory>${project.resources.myolibdir}</directory>
                             </lib>
                         </libs>
                     </linker>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>dylib-link</id>
-                        <goals>
-                            <goal>nar-process-libraries</goal>
-                        </goals>
-                        <configuration>
-                            <commands>
-                                <processLibraryCommand>
-                                    <executable>ls</executable>
-                                    <libraryType>jni</libraryType>
-                                    <arguments>
-                                        <argument>-l</argument>
-                                    </arguments>
-                                </processLibraryCommand>
-                            </commands>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
