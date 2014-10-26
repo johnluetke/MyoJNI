@@ -1,6 +1,6 @@
-package myojni.jni;
+package net.johnluetke.myojni.jni;
 
-import myojni.Disposable;
+import net.johnluetke.myojni.Disposable;
 
 public class Myo implements Disposable {
 

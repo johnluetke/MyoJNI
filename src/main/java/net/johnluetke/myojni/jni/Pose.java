@@ -1,4 +1,4 @@
-package myojni.jni;
+package net.johnluetke.myojni.jni;
 
 public enum Pose {
     Rest,

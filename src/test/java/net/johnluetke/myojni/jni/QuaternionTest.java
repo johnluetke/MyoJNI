@@ -1,4 +1,4 @@
-package myojni.jni;
+package net.johnluetke.myojni.jni;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.AfterClass;

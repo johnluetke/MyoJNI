@@ -1,4 +1,4 @@
-package myojni;
+package net.johnluetke.myojni;
 
 public interface Disposable {
 

@@ -1,4 +1,4 @@
-#include "myojni.h"
+#include "net_johnluetke_myojni.h"
 
 namespace MyoJNI {
 
@@ -20,15 +20,15 @@ namespace MyoJNI {
     			break;
     	};
 
-    	jclass armClass = env->FindClass("myojni/jni/Arm");
-    	jfieldID armFieldID = env->GetStaticFieldID(armClass, armString.c_str(), "Lmyojni/jni/Arm;");
+    	jclass armClass = env->FindClass("net/johnluetke/myojni/jni/Arm");
+    	jfieldID armFieldID = env->GetStaticFieldID(armClass, armString.c_str(), "Lnet/johnluetke/myojni/jni/Arm;");
     	jobject javaArmObject = env->GetStaticObjectField(armClass, armFieldID);
 
     	return javaArmObject;
     }
 
     jobject getJavaFirmwareVersion(JNIEnv * env, myo::FirmwareVersion firmwareVersion) {
-        jclass firmwareVersionClass = env->FindClass("myojni/jni/FirmwareVersion");
+        jclass firmwareVersionClass = env->FindClass("net/johnluetke/myojni/jni/FirmwareVersion");
         jmethodID firmwareVersionConstructor = env->GetMethodID(firmwareVersionClass, "<init>", "(IIII)V");
         jobject javaFirmwareVersion = env->NewObject(firmwareVersionClass,
                                                      firmwareVersionConstructor,
@@ -70,15 +70,15 @@ namespace MyoJNI {
                 break;
         };
 
-        jclass poseClass = env->FindClass("myojni/jni/Pose");
-        jfieldID poseFieldID = env->GetStaticFieldID(poseClass, poseString.c_str(), "Lmyojni/jni/Pose;");
+        jclass poseClass = env->FindClass("net/johnluetke/myojni/jni/Pose");
+        jfieldID poseFieldID = env->GetStaticFieldID(poseClass, poseString.c_str(), "Lnet/johnluetke/myojni/jni/Pose;");
         jobject javaPoseObject = env->GetStaticObjectField(poseClass, poseFieldID);
 
         return javaPoseObject;
     }
 
     jobject getJavaQuaternion(JNIEnv * env, myo::Quaternion<float> quaternion) {
-        jclass quaternionClass = env->FindClass("myojni/jni/Quaternion");
+        jclass quaternionClass = env->FindClass("net/johnluetke/myojni/jni/Quaternion");
         jmethodID quaternionConstructor = env->GetMethodID(quaternionClass, "<init>", "(DDDD)V");
         jobject javaQuaternion = env->NewObject(quaternionClass,
                                                 quaternionConstructor,
@@ -91,7 +91,7 @@ namespace MyoJNI {
     }
 
     jobject getJavaVector3(JNIEnv * env, myo::Vector3<float> vector3) {
-    	jclass vector3Class = env->FindClass("myojni/jni/Vector3");
+    	jclass vector3Class = env->FindClass("net/johnluetke/myojni/jni/Vector3");
         jmethodID vector3Constructor = env->GetMethodID(vector3Class, "<init>", "(DDD)V");
         jobject javaVector3 = env->NewObject(vector3Class,
                                              vector3Constructor,
@@ -118,7 +118,7 @@ namespace MyoJNI {
     	};
 
     	jclass xDirectionClass = env->FindClass("myojni/jni/XDirection");
-    	jfieldID xDirectionFieldID = env->GetStaticFieldID(xDirectionClass, xDirectionString.c_str(), "Lmyojni/jni/XDirection;");
+    	jfieldID xDirectionFieldID = env->GetStaticFieldID(xDirectionClass, xDirectionString.c_str(), "Lnet/johnluetke/myojni/jni/XDirection;");
     	jobject javaXDirectionObject = env->GetStaticObjectField(xDirectionClass, xDirectionFieldID);
 
     	return javaXDirectionObject;

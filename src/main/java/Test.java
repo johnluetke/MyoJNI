@@ -1,4 +1,4 @@
-import myojni.jni.*;
+import net.johnluetke.myojni.jni.*;
 
 public class Test {
 

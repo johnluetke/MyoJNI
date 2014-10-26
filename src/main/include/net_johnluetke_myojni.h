@@ -7,7 +7,7 @@
 #include <jni.h>
 #include <myo/myo.hpp>
 
-#include "myojni_DeviceListener.h"
+#include "net_johnluetke_myojni_DeviceListener.h"
 
 namespace MyoJNI {
 
