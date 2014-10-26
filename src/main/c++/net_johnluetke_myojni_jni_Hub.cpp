@@ -14,7 +14,7 @@ JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_initialize(JNIEnv *env
 
 JNIEXPORT jobject JNICALL Java_net_johnluetke_myojni_jni_Hub_waitForMyo(JNIEnv *env, jobject obj, jlong milliseconds) {
     myo::Hub * hub = MyoJNI::getJNIHandle<myo::Hub>(env, obj);
-    myo::Myo * myo = hub->waitForMyo(milliseconds);
+    myo::Myo * myo = hub->waitForMyo((unsigned int)milliseconds);
     // According to SDK docs, timeout produces a null return
     if (myo == NULL) {
         return NULL;
@@ -59,7 +59,7 @@ JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_run(JNIEnv *env, jobje
     if (hub == NULL) {
         env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "No native Hub object found");
     }
-    hub->run(duration_ms);
+    hub->run((unsigned int)duration_ms);
 }
 
 JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_runOnce(JNIEnv *env, jobject obj, jlong duration_ms) {
@@ -67,7 +67,7 @@ JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_runOnce(JNIEnv *env, j
     if (hub == NULL) {
         env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "No native Hub object found");
     }
-    hub->runOnce(duration_ms);
+    hub->runOnce((unsigned int)duration_ms);
 }
 
 void Java_net_johnluetke_myojni_jni_Hub_dispose(JNIEnv *env, jobject obj) {

@@ -124,6 +124,4 @@ namespace MyoJNI {
     	return javaXDirectionObject;
     }
 
-    void dispose() {
-    }
 }

@@ -55,8 +55,6 @@ namespace MyoJNI {
 
     jobject getJavaXDirection(JNIEnv * env, myo::XDirection xDirection);
 
-    static void dispose();
-
 }
 
 #endif // _MYOJNI_H_INCLUDED_
