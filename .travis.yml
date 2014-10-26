@@ -2,7 +2,6 @@ language: java
 
 jdk:
   - oraclejdk8
-  - openjdk8
   - oraclejdk7
   - openjdk7
 
@@ -11,7 +10,7 @@ os:
   
 env:
   global: 
-    - MYOSDK=/home/travis/myo-sdk/myo.framework MYSDKDOWNLOAD=https://s3.amazonaws.com/thalmicdownloads/mac/myo-sdk-mac-beta5.zip
+    - MYOSDK=/home/travis/myo-sdk/myo.framework MYOSDKDOWNLOAD=https://s3.amazonaws.com/thalmicdownloads/mac/myo-sdk-mac-beta5.zip
     
 install:
   - mkdir -p /home/travis/myo-sdk/
