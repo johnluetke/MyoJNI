@@ -50,8 +50,17 @@ JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_addListener(JNIEnv *en
     }
 }
 
-JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_removeListener(JNIEnv *env, jobject obj, jobject jDevceListener) {
-    env->ThrowNew(env->FindClass("java/lang/UnsupportedOperationException"), "Not implemented");
+JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_removeListener(JNIEnv *env, jobject obj, jobject jDeviceListener) {
+    myo::Hub * hub = MyoJNI::getJNIHandle<myo::Hub>(env, obj);
+    if (hub == NULL) {
+        env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "Native Hub object is null");
+    }
+    else {
+        jmethodID hashCodeMethod = env->GetMethodID(env->GetObjectClass(jDeviceListener), "hashCode", "()I");
+        jint jDeviceListenerHashCode = env->CallIntMethod(jDeviceListener, hashCodeMethod);
+
+        MyoJNI::deviceListenerHashMap.erase(jDeviceListenerHashCode);
+    }
 }
 
 JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_run(JNIEnv *env, jobject obj, jlong duration_ms) {
