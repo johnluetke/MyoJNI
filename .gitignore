@@ -1,6 +1,6 @@
 .idea/
-src/main/resources/myo-sdk/macosx/myo.framework
-src/main/resources/myo-sdk/windows
+src/main/resources/myo-sdk
 target/
 
 *.swp
+
