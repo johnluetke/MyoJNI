@@ -48,6 +48,11 @@ public class Test {
             }
 
             @Override
+            public void onOrientationData(Myo myo, long timestamp, Quaternion rotation) {
+
+            }
+
+            @Override
             public void onAccelerometerData(Myo myo, long timestamp, Vector3 accel) {
                 System.out.println("Accel data received. " + accel);
             }

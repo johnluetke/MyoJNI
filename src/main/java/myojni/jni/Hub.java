@@ -5,7 +5,7 @@ import myojni.Disposable;
 public class Hub implements Disposable {
 
     static {
-        System.load(System.getProperty("user.dir") + "/libmyojni.so");
+        NarSystem.loadLibrary();
     }
 
     protected long nativeHandle;
