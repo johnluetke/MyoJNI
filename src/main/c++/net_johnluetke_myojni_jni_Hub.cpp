@@ -4,6 +4,7 @@
 JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_initialize(JNIEnv *env, jobject obj, jstring applicationIdentifier) {
     try {
 	    const char * appId = env->GetStringUTFChars(applicationIdentifier, 0);
+	    std::cout << appId;
 	    myo::Hub * hub = new myo::Hub(appId);
 	    MyoJNI::setJNIHandle(env, obj, hub);
 	}
@@ -60,6 +61,22 @@ JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_removeListener(JNIEnv 
         jint jDeviceListenerHashCode = env->CallIntMethod(jDeviceListener, hashCodeMethod);
 
         MyoJNI::deviceListenerHashMap.erase(jDeviceListenerHashCode);
+    }
+}
+
+JNIEXPORT void JNICALL Java_net_johnluetke_myojni_jni_Hub_pSetLockingPolicy (JNIEnv *env, jobject obj, jint lockingPolicy) {
+    myo::Hub * hub = MyoJNI::getJNIHandle<myo::Hub>(env, obj);
+    if (hub == NULL) {
+        env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "No native Hub object found");
+    }
+    if (lockingPolicy == 0) {
+        hub->setLockingPolicy(myo::Hub::lockingPolicyNone);
+    }
+    else if (lockingPolicy == 1) {
+        hub->setLockingPolicy(myo::Hub::lockingPolicyStandard);
+    }
+    else {
+        env->ThrowNew(env->FindClass("java/lang/RuntimeException"), "Invalid lock policy");
     }
 }
 

@@ -6,6 +6,7 @@
 #include <string>
 #include <jni.h>
 #include <myo/myo.hpp>
+#include <myo/cxx/Hub.hpp>
 
 #include "net_johnluetke_myojni_DeviceListener.h"
 

@@ -6,7 +6,6 @@ public enum Pose {
     WaveIn,
     WaveOut,
     FingersSpread,
-    Reserved1,
-    ThumbToPinky,
+    DoubleTap,
     Unknown
 }

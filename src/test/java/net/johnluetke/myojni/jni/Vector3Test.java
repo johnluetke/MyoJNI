@@ -8,13 +8,7 @@ import org.junit.Test;
 
 public class Vector3Test {
 
-    static Hub hub;
     Vector3 vector;
-
-    @BeforeClass
-    public static void SetUp() {
-        hub = new Hub("myojni.junit.tests");
-    }
 
     @Test
     public void testX() {

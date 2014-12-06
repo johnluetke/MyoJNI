@@ -58,11 +58,8 @@ namespace MyoJNI {
             case myo::Pose::fingersSpread:
                 poseString = "FingersSpread";
                 break;
-            case myo::Pose::reserved1:
-                poseString = "Reserved1";
-                break;
-            case myo::Pose::thumbToPinky:
-                poseString = "ThumbToPinky";
+            case myo::Pose::doubleTap:
+                poseString = "DoubleTap";
                 break;
             case myo::Pose::unknown:
             default:
@@ -123,5 +120,4 @@ namespace MyoJNI {
 
     	return javaXDirectionObject;
     }
-
 }

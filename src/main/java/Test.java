@@ -33,13 +33,23 @@ public class Test {
             }
 
             @Override
-            public void onArmRecognized(Myo myo, long timestamp, Arm arm, XDirection xDirection) {
+            public void onArmSync(Myo myo, long timestamp, Arm arm, XDirection xDirection) {
                 System.out.println(arm + " arm was detected, XDirection is " + xDirection);
             }
 
             @Override
-            public void onArmLost(Myo myo, long timestamp) {
+            public void onArmUnsync(Myo myo, long timestamp) {
                 System.out.println("Arm was lost");
+            }
+
+            @Override
+            public void onUnlock(Myo myo, long timestamp) {
+                System.out.println("Unlocked");
+            }
+
+            @Override
+            public void onLock(Myo myo, long timestamp) {
+                System.out.println("Locked");
             }
 
             @Override

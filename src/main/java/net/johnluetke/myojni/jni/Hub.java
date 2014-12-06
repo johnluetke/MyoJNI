@@ -11,7 +11,7 @@ public class Hub implements Disposable {
     protected long nativeHandle;
 
 	public Hub(String applicationIdentifier) {
-		initialize(applicationIdentifier);
+        initialize(applicationIdentifier);
 	}
 
     protected Hub(long handle) {
@@ -25,6 +25,12 @@ public class Hub implements Disposable {
     public native void addListener(DeviceListener listener);
 
     public native void removeListener(DeviceListener listener);
+
+    public void setLockingPolicy(LockingPolicy policy) {
+        pSetLockingPolicy(policy.ordinal());
+    }
+
+    private native void pSetLockingPolicy(int policy);
 
     public native void run(long duration_ms);
 

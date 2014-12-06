@@ -30,14 +30,22 @@ namespace MyoJNI {
         DEVICE_LISTENER_INVOKE_VOID("onDisconnect", "(Lnet/johnluetke/myojni/jni/Myo;J)V", myo, timestamp);
     }
 
-    void DeviceListener::onArmRecognized(myo::Myo * myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection) {
+    void DeviceListener::onArmSync(myo::Myo * myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection) {
         jobject javaArm = MyoJNI::getJavaArm(this->env, arm);
         jobject javaXDirection = MyoJNI::getJavaXDirection(this->env, xDirection);
-        DEVICE_LISTENER_INVOKE_VOID("onArmRecognized", "(Lnet/johnluetke/myojni/jni/Myo;JLnet/johnluetke/myojni/jni/Arm;Lnet/johnluetke/myojni/jni/XDirection;)V", myo, timestamp, javaArm, javaXDirection);
+        DEVICE_LISTENER_INVOKE_VOID("onArmSync", "(Lnet/johnluetke/myojni/jni/Myo;JLnet/johnluetke/myojni/jni/Arm;Lnet/johnluetke/myojni/jni/XDirection;)V", myo, timestamp, javaArm, javaXDirection);
     }
 
-    void DeviceListener::onArmLost(myo::Myo * myo, uint64_t timestamp) {
-        DEVICE_LISTENER_INVOKE_VOID("onArmLost", "(Lnet/johnluetke/myojni/jni/Myo;J)V", myo, timestamp);
+    void DeviceListener::onArmUnsync(myo::Myo * myo, uint64_t timestamp) {
+        DEVICE_LISTENER_INVOKE_VOID("onArmUnsync", "(Lnet/johnluetke/myojni/jni/Myo;J)V", myo, timestamp);
+    }
+
+    void DeviceListener::onUnlock(myo::Myo * myo, uint64_t timestamp) {
+        DEVICE_LISTENER_INVOKE_VOID("onUnlock", "(Lnet/johnluetke/myojni/jni/Myo;J)V", myo, timestamp);
+    }
+
+    void DeviceListener::onLock(myo::Myo * myo, uint64_t timestamp) {
+        DEVICE_LISTENER_INVOKE_VOID("onLock", "(Lnet/johnluetke/myojni/jni/Myo;J)V", myo, timestamp);
     }
 
     void DeviceListener::onPose(myo::Myo * myo, uint64_t timestamp, myo::Pose pose) {

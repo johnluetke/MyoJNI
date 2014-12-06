@@ -55,10 +55,16 @@ public:
     virtual void onDisconnect(Myo* myo, uint64_t timestamp) {}
 
     /// Called when a paired Myo recognizes that it is on an arm.
-    virtual void onArmRecognized(Myo* myo, uint64_t timestamp, Arm arm, XDirection xDirection) {}
+    virtual void onArmSync(Myo* myo, uint64_t timestamp, Arm arm, XDirection xDirection) {}
 
     /// Called when a paired Myo is moved or removed from the arm.
-    virtual void onArmLost(Myo* myo, uint64_t timestamp) {}
+    virtual void onArmUnsync(Myo* myo, uint64_t timestamp) {}
+
+    /// Called when a paired Myo becomes unlocked.
+    virtual void onUnlock(Myo* myo, uint64_t timestamp) {}
+
+    /// Called when a paired Myo becomes locked.
+    virtual void onLock(Myo* myo, uint64_t timestamp) {}
 
     /// Called when a paired Myo has provided a new pose.
     virtual void onPose(Myo* myo, uint64_t timestamp, Pose pose) {}

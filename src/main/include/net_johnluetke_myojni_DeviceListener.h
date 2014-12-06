@@ -29,9 +29,13 @@ namespace MyoJNI {
 
         void onDisconnect(myo::Myo * myo, uint64_t timestamp);
 
-        void onArmRecognized(myo::Myo * myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection);
+        void onArmSync(myo::Myo * myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection);
 
-        void onArmLost(myo::Myo * myo, uint64_t timestamp);
+        void onArmUnsync(myo::Myo * myo, uint64_t timestamp);
+
+        void onUnlock(myo::Myo * myo, uint64_t timestamp);
+
+        void onLock(myo::Myo * myo, uint64_t timestamp);
 
         void onPose(myo::Myo * myo, uint64_t timestamp, myo::Pose pose);
 
