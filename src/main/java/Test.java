@@ -76,6 +76,11 @@ public class Test {
             public void onRssi(Myo myo, long timestamp, int rssi) {
                 System.out.println("[" + myo.toString() + "] RSSI: " + rssi);
             }
+
+            @Override
+            public void onEmgData(Myo myo, long timestamp, int[] emg) {
+                System.out.println("[" + myo.toString() + "] EMG: " + emg);
+            }
         });
 
         myo.toString();

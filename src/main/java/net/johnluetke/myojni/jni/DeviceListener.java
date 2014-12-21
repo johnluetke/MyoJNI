@@ -27,4 +27,6 @@ public interface DeviceListener {
     public void onGyroscopeData(Myo myo, long timestamp, Vector3 gyro);
 
     public void onRssi(Myo myo, long timestamp, int rssi);
+
+    public void onEmgData(Myo myo, long timestamp, int[] emg);
 }

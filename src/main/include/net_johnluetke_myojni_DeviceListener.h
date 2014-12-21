@@ -46,6 +46,8 @@ namespace MyoJNI {
         void onGyroscopeData(myo::Myo * myo, uint64_t timestamp, const myo::Vector3<float> & gyro);
 
         void onRssi(myo::Myo * myo, uint64_t timestamp, int8_t rssi);
+
+        void onEmgData(myo::Myo * myo, uint64_t timestamp, const int8_t * emg);
     };
 }
 

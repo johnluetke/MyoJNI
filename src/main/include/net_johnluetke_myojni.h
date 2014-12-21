@@ -12,6 +12,8 @@
 
 namespace MyoJNI {
 
+    #define MYOJNI_EMG_ARRAY_SIZE 8
+
     extern std::map<jint, MyoJNI::DeviceListener *> deviceListenerHashMap;
     extern std::map<myo::Myo *, jobject> myoHashMap;
 

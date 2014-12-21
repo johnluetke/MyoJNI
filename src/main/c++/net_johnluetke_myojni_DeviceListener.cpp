@@ -71,4 +71,17 @@ namespace MyoJNI {
     void DeviceListener::onRssi(myo::Myo * myo, uint64_t timestamp, int8_t rssi) {
         DEVICE_LISTENER_INVOKE_VOID("onRssi", "(Lnet/johnluetke/myojni/jni/Myo;JI)V", myo, timestamp, rssi);
     }
+
+    void DeviceListener::onEmgData(myo::Myo * myo, uint64_t timestamp, const int8_t * emg) {
+        jintArray emgData = this->env->NewIntArray(MYOJNI_EMG_ARRAY_SIZE);
+        jint emgTemp[MYOJNI_EMG_ARRAY_SIZE];
+
+        for (int8_t i = 0; i < MYOJNI_EMG_ARRAY_SIZE; i++) {
+            emgTemp[i] = emg[i];
+        }
+
+        this->env->SetIntArrayRegion(emgData, 0, MYOJNI_EMG_ARRAY_SIZE, emgTemp);
+
+        DEVICE_LISTENER_INVOKE_VOID("onEmgData", "(Lnet/johnluetke/myojni/jni/Myo;J[I)V", myo, timestamp, emgData);
+    }
 }
