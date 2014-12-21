@@ -1,6 +1,6 @@
 .idea/
 src/main/resources/myo-sdk
 target/
-
+*.iml
 *.swp
 
